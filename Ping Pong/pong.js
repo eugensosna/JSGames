@@ -1,3 +1,4 @@
+import { startDetectionHand } from "./handdetect.js";
 // select canvas element
 const cvs = document.getElementById("box");
 
@@ -9,6 +10,7 @@ let hit = new Audio();
 let wall = new Audio();
 let userScore = new Audio();
 let comScore = new Audio();
+let playing = false;
 
 hit.src = "sounds/hit.mp3";
 wall.src = "sounds/wall.mp3";
@@ -74,10 +76,37 @@ function drawArc(x, y, r, color) {
 cvs.addEventListener("mousemove", getMousePos);
 
 function getMousePos(evt) {
-  let rect = cvs.getBoundingClientRect();
+  moveHandler(evt.clientY);
+  if (!playing) {
+    playing = true;
+    console.log("start playing");
 
-  user.y = evt.clientY - rect.top - user.height / 2;
+  }
 }
+
+function moveHandler(clientY) {
+  let rect = cvs.getBoundingClientRect();
+  user.y = clientY - rect.top - user.height / 2;
+}
+
+
+function coordinatesCallback(x, y) {
+  var cameradetect = true;
+  if (y) {
+    if (!playing) {
+      playing = true;
+      console.log("start playing");
+
+    }
+    let coordinate = ((y * cvs.height) / 100).toFixed(0);
+    let rect = cvs.getBoundingClientRect();
+
+    coordinate = parseInt(coordinate, 10); // or use Number()
+    // console.log(`Detected hand at X: ${coordinate} offsetLeft ${rect.top}`);
+    moveHandler(coordinate + rect.top);
+  }
+}
+// startDetectionHand(coordinatesCallback);
 
 // when COM or USER scores, we reset the ball
 function resetBall() {
@@ -120,6 +149,9 @@ function collision(b, p) {
 
 // update function, the function that does all calculations
 function update() {
+  if (!playing) {
+    return;
+  }
   // change the score of players, if the ball goes to the left "ball.x<0" computer win, else if "ball.x > cvs.width" the user win
   if (ball.x - ball.radius < 0) {
     com.score++;
@@ -200,9 +232,25 @@ function render() {
 function game() {
   update();
   render();
+  // requestAnimationFrame(game);
+
 }
 // number of frames per second
 let framePerSecond = 50;
 
+
+// Ensure the main script is loaded before calling its function
+window.addEventListener('load', () => {
+    // Check if the function exists before calling it
+    if (window.startDetection) {
+        window.startDetection(coordinatesCallback);
+    } else {
+        console.error("The 'startDetection' function is not available.");
+    }
+});
+
+
 //call the game function 50 times every 1 Sec
 let loop = setInterval(game, 1000 / framePerSecond);
+
+// requestAnimationFrame(game);

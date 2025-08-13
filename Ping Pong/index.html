@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Ping Pong Game in JavaScript</title>
     <style>
-        body{
-            background-color: navy;
-        }
-        #box{
-            border: 2px solid #008000;
-            position: absolute;
-            margin :auto;
-            top:0;
-            right:0;
-            left:0;
-            bottom:0;
-        }
+      body {
+        background-color: navy;
+      }
+      #box {
+        border: 2px solid #008000;
+        position: relative;
+        margin: auto;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+      }
     </style>
-</head>
-<body>
-   <canvas id="box" width="800" height="500"></canvas>
-   <script src="pong.js"></script>
-</body>
+  </head>
+  <body>
+    <canvas id="box" width="800" height="500"></canvas>
+    <video id="videoInput" autoplay playsinline style="display: none"></video>
+    <canvas id="canvasOutput"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+    <!-- <canvas id="canvasOutput"></canvas> -->
+    <script type="module" src="pong.js"></script>
+    <script type="module" src="handdetect.js"></script>
+  </body>
 </html>
