@@ -1,16 +1,16 @@
 # 👾 JSGames - Games using vanilla Javascript
 
-> ### Website: [https://iampavangandhi.github.io/JSGames](https://iampavangandhi.github.io/JSGames) 🌐
+> ### Website: [https://eugensosna.github.io/JSGames/](https://eugensosna.github.io/JSGames/) 🌐
 
 <br />
 
-## Added Games
+## Games [source](https://github.com/eugensosna/JSGames)
 
-### 1. Corona Fighter: [Link](https://iampavangandhi.github.io/JSGames/Corona%20Fighter)
-### 2. Snake Web Game: [Link](https://iampavangandhi.github.io/JSGames/Snake%20Web%20Game)
-### 3. Tic Tac Toe: [Link](https://iampavangandhi.github.io/JSGames/Tic%20Tac%20Toe)
+### 1. Corona Fighter: [Link](./Corona%20Fighter)
+### 2. Snake Web Game: [Link](./Snake%20Web%20Game)
+### 3. Tic Tac Toe: [Link](./Tic%20Tac%20Toe)
 ### 4. Ping Pong: [Link](./Ping%20Pong/)
-### 5. Tetris Game: [Link](https://iampavangandhi.github.io/JSGames/Tetris)
+### 5. Tetris Game: [Link](./Tetris)
 
 ## Contributing
 
@@ -18,7 +18,7 @@
 
 ## License
 
-#### [MIT](LICENSE) © Pavan Gandhi
+#### [MIT](LICENSE) © [Pavan Gandhi](https://github.com/iampavangandhi)
 
 <br />
 
