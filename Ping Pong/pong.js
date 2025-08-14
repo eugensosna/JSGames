@@ -106,7 +106,7 @@ function coordinatesCallback(x, y) {
     moveHandler(coordinate + rect.top);
   }
 }
-// startDetectionHand(coordinatesCallback);
+startDetectionHand(coordinatesCallback);
 
 // when COM or USER scores, we reset the ball
 function resetBall() {
@@ -240,7 +240,7 @@ let framePerSecond = 50;
 
 
 // Ensure the main script is loaded before calling its function
-window.addEventListener('load', () => {
+/*window.addEventListener('load', () => {
     // Check if the function exists before calling it
     if (window.startDetection) {
         window.startDetection(coordinatesCallback);
@@ -248,6 +248,7 @@ window.addEventListener('load', () => {
         console.error("The 'startDetection' function is not available.");
     }
 });
+*/
 
 
 //call the game function 50 times every 1 Sec
