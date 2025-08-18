@@ -7,8 +7,8 @@
 ## Games [source](https://github.com/eugensosna/JSGames)
 
 
-### 1. Arkade 1 : [Link](./Arkade_slow/index.html)
-[Arkade 1 Preview](assets/1.gif)
+### 1. Arkade 1 : [Link](./Arkade_slow/)
+[Arkade 1 Preview](assets/11.gif)
 ### 2. Arkade 2:[Link](./Arkade3/)
 ![Arkade 2 Preview](assets/2.gif)
 ### 3. Ping Pong: [Link](./Ping%20Pong/)
