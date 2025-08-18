@@ -1,0 +1,4 @@
+[submodule "Arkade2"]
+	path = Arkade2
+	url = https://github.com/eugensosna/Gamedev-Canvas-workshop.git
+	branch = gh-pages
