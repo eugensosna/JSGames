@@ -1,7 +1,4 @@
-[submodule "Arkade2"]
-	path = Arkade2
-	url = https://github.com/eugensosna/Gamedev-Canvas-workshop.git
-	branch = gh-pages
+
 [submodule "Arkade3"]
 	path = Arkade3
 	url = https://github.com/eugensosna/Gamedev-Canvas-workshop.git

@@ -8,7 +8,7 @@
 
 
 ### 1. Arkade 1 : [Link](./Arkade_slow/index.html)
-### 2. Arkade 2:[Link](./Arkade2/)
+### 2. Arkade 2:[Link](./Arkade3/)
 ### 3. Ping Pong: [Link](./Ping%20Pong/)
 ### 4. Corona Fighter: [Link](./Corona%20Fighter)
 ### 5. Snake Web Game: [Link](./Snake%20Web%20Game)
