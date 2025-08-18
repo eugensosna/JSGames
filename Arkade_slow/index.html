@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Basic Breakout HTML Game</title>
+  <meta charset="UTF-8">
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Wrist Detection (every 0.2s)</h2>
+  <video id="videoInput" autoplay playsinline style="display: none;"></video>
+
+  <canvas id="videoOutput"></canvas>
+  <canvas width="440" height="500" id="game"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+  <script type="module" src="handdetect.js"></script>
+  <script type="module" src="game.js"></script>
+
+</body>
+
+</html>

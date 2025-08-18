@@ -6,11 +6,15 @@
 
 ## Games [source](https://github.com/eugensosna/JSGames)
 
-### 1. Corona Fighter: [Link](./Corona%20Fighter)
-### 2. Snake Web Game: [Link](./Snake%20Web%20Game)
-### 3. Tic Tac Toe: [Link](./Tic%20Tac%20Toe)
-### 4. Ping Pong: [Link](./Ping%20Pong/)
-### 5. Tetris Game: [Link](./Tetris)
+
+### 1. Arkade 1 : [Link](./Arkade_slow/index.html)
+### 2. Arkade 2:[Link](./Arkade2/)
+### 3. Ping Pong: [Link](./Ping%20Pong/)
+### 4. Corona Fighter: [Link](./Corona%20Fighter)
+### 5. Snake Web Game: [Link](./Snake%20Web%20Game)
+### 6. Tic Tac Toe: [Link](./Tic%20Tac%20Toe)
+### 7. Ping Pong: [Link](./Ping%20Pong/)
+### 8. Tetris Game: [Link](./Tetris)
 
 ## Contributing
 

@@ -1,0 +1,3 @@
+[submodule "Arkade2"]
+	path = Arkade2
+	url = https://github.com/end3r/Gamedev-Canvas-workshop.git
