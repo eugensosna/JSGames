@@ -1,4 +1,4 @@
-# 👾 JSGames - Games using vanilla Javascript
+# 👾 JSGames - Games using vanilla Javascript and gesture detection movenet of hand to change gaming 
 
 > ### Website: [https://eugensosna.github.io/JSGames/](https://eugensosna.github.io/JSGames/) 🌐
 
@@ -8,13 +8,12 @@
 
 
 ### 1. Arkade 1 : [Link](./Arkade_slow/index.html)
+[Arkade 1 Preview](assets/1.gif)
 ### 2. Arkade 2:[Link](./Arkade3/)
+![Arkade 2 Preview](assets/2.gif)
 ### 3. Ping Pong: [Link](./Ping%20Pong/)
-### 4. Corona Fighter: [Link](./Corona%20Fighter)
-### 5. Snake Web Game: [Link](./Snake%20Web%20Game)
-### 6. Tic Tac Toe: [Link](./Tic%20Tac%20Toe)
-### 7. Ping Pong: [Link](./Ping%20Pong/)
-### 8. Tetris Game: [Link](./Tetris)
+![Ping Pong Preview](assets/3.gif)
+
 
 ## Contributing
 
