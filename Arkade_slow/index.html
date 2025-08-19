@@ -12,16 +12,20 @@
     }
 
     body {
-      background: black;
+      /* background: black; */
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    
+    canvas {
+       background: black;
     }
   </style>
 </head>
 
 <body>
-  <h2>Wrist Detection (every 0.2s)</h2>
+  <h2>Press Space to start </h2>
   <video id="videoInput" autoplay playsinline style="display: none;"></video>
 
   <canvas id="videoOutput"></canvas>
