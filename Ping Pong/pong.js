@@ -77,11 +77,11 @@ cvs.addEventListener("mousemove", getMousePos);
 
 function getMousePos(evt) {
   moveHandler(evt.clientY);
-  if (!playing) {
-    playing = true;
-    console.log("start playing");
+  // if (!playing) {
+  //   playing = true;
+  //   console.log("start playing");
 
-  }
+  // }
 }
 
 function moveHandler(clientY) {
@@ -89,15 +89,25 @@ function moveHandler(clientY) {
   user.y = clientY - rect.top - user.height / 2;
 }
 
+document.addEventListener('keydown', function (e) {
+  
+  // space key
+  // if they ball is not moving, we can launch the ball using the space key. ball
+  // will move towards the bottom right to start
+  if (e.which === 32) {
+    playing = true;
+
+  }
+});
 
 function coordinatesCallback(x, y) {
   var cameradetect = true;
   if (y) {
-    if (!playing) {
-      playing = true;
-      console.log("start playing");
+    // if (!playing) {
+    //   playing = true;
+    //   console.log("start playing");
 
-    }
+    // }
     let coordinate = ((y * cvs.height) / 100).toFixed(0);
     let rect = cvs.getBoundingClientRect();
 
@@ -155,11 +165,10 @@ function update() {
   // change the score of players, if the ball goes to the left "ball.x<0" computer win, else if "ball.x > cvs.width" the user win
   if (ball.x - ball.radius < 0) {
     com.score++;
-    // comScore.play();
+    playing = false;
     resetBall();
   } else if (ball.x + ball.radius > cvs.width) {
     user.score++;
-    // userScore.play();
     resetBall();
   }
 
