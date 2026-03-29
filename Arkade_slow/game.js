@@ -99,6 +99,86 @@ function collides(obj1, obj2) {
     obj1.y < obj2.y + obj2.height &&
     obj1.y + obj1.height > obj2.y;
 }
+const countdownOverlay = document.getElementById("countdown-overlay");
+const countdownText = document.getElementById("countdown-text");
+const loadingSpinner = document.getElementById("loading-spinner");
+
+let mediapipeLoaded = false;
+let playing = false;
+let loadingCount = 5;
+
+function updateLoadingTimer() {
+  if (!mediapipeLoaded) {
+    if (loadingCount > 0) {
+      countdownText.innerText = "Loading MediaPipe... " + loadingCount;
+      loadingCount--;
+      setTimeout(updateLoadingTimer, 1000);
+    } else {
+      countdownText.innerText = "Wait for camera...";
+    }
+  }
+}
+
+updateLoadingTimer();
+
+function startCountdown() {
+  mediapipeLoaded = true;
+  loadingSpinner.style.display = "none";
+}
+
+function startCountdownGamePlay() {
+  if (countdownOverlay.style.display === "flex") return;
+  countdownOverlay.style.display = "flex";
+  loadingSpinner.style.display = "block";
+  let count = 3;
+  countdownText.innerText = "Go in " + count;
+
+  const timer = setInterval(() => {
+    count--;
+    if (count > 0) {
+      countdownText.innerText = "Go in " + count;
+    } else if (count === 0) {
+      countdownText.innerText = "GO!";
+      loadingSpinner.style.display = "none";
+    } else {
+      clearInterval(timer);
+      countdownOverlay.style.display = "none";
+      playing = true;
+      if (ball.dx === 0 && ball.dy === 0) {
+        ball.dx = ball.speed;
+        ball.dy = ball.speed;
+      }
+    }
+  }, 1000);
+}
+
+function drawStaticElements() {
+  // draw walls
+  context.fillStyle = 'lightgrey';
+  context.fillRect(0, 0, canvas.width, wallSize);
+  context.fillRect(0, 0, wallSize, canvas.height);
+  context.fillRect(canvas.width - wallSize, 0, wallSize, canvas.height);
+
+  // draw bricks
+  bricks.forEach(function (brick) {
+    context.fillStyle = brick.color;
+    context.fillRect(brick.x, brick.y, brick.width, brick.height);
+  });
+
+  // draw paddle
+  context.fillStyle = 'cyan';
+  context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+  // draw horizontal dashed line
+  context.strokeStyle = 'cyan';
+  context.lineWidth = 2;
+  context.setLineDash([10, 5]);
+  context.beginPath();
+  context.moveTo(0, 400);
+  context.lineTo(canvas.width, 400);
+  context.stroke();
+}
+
 var count = 0
 var cameradetect = false;
 
@@ -110,21 +190,12 @@ function loop() {
   // move paddle by it's velocity
   var oldX = paddle.x;
 
-  count++;
   if (cameradetect) {
-    // console.log(`paddle.x: ${paddle.x}, paddle.dx: ${paddle.dx}, count: ${count}`);
-
     paddle.x += paddle.dx;
-    // console.log(`paddle moved from ${oldX} to ${paddle.x}`);
-    paddle.dx = 0; // reset paddle dx after moving
-    cameradetect = !cameradetect;
+    paddle.dx = 0;
+    cameradetect = false;
   }
   paddle.x += paddle.dx;
-
-  if (paddle.x !== oldX && Math.abs(paddle.dx) > 3) {
-    // console.log(`paddle moved from ${oldX} to ${paddle.x}`);
-
-  }
 
   // prevent paddle from going through walls
   if (paddle.x < wallSize) {
@@ -132,6 +203,12 @@ function loop() {
   }
   else if (paddle.x + brickWidth > canvas.width - wallSize) {
     paddle.x = canvas.width - wallSize - brickWidth;
+  }
+
+  if (!playing) {
+    // Still draw bricks and paddle even if not playing
+    drawStaticElements();
+    return;
   }
 
   // move ball by it's velocity
@@ -297,48 +374,26 @@ function loggedData(message) {
 
 }
 
-startDetectionHand(coordinatesCallback);
-
-// Ensure the main script is loaded before calling its function
-
-window.addEventListener('load', () => {
-  loggedData("add listener ");
-  // Check if the function exists before calling it
-  if (window.startDetection) {
-    window.startDetection(coordinatesCallback);
-  } else {
-    console.error("The 'startDetection' function is not available.");
-  }
-});
+startDetectionHand(coordinatesCallback, startCountdown);
 
 function coordinatesCallback(x, y) {
   cameradetect = true;
   if (x) {
     let coordinate = ((x * canvas.width) / 100).toFixed(0);
 
+    let oldPaddleX = paddle.x;
+
     if (coordinate > paddle.x) {
       paddle.dx = coordinate - paddle.x;
-
     } else if (coordinate < paddle.x) {
       paddle.dx = (paddle.x - coordinate) * -1;
     }
-    // console.log(`Callback received: x=${x}%, coordinate ${coordinate} current coordinate ${paddle.x} dx ${paddle.dx}`);
-    //paddle.x = coordinate;
-    //paddle.x = (paddle.x * canvas.width) / 100 - paddle.width / 2;
-    // console.log(`Callback received new coordinate : current coordinate ${paddle.x} dx ${paddle.dx}`);
 
+    // Trigger game start countdown on first hand movement
+    if (!playing && Math.abs(paddle.x - coordinate) > 5) {
+      startCountdownGamePlay();
+    }
   }
 }
-// setTimeout(() => {
-//   console.log("set paddle.x to 100");
-//   paddle.x = 100;
-//   setTimeout(() => {
-//     paddle.dx = -50;
-//     cameradetect = true;
-//     loggedData(`move paddle.x: ${paddle.x}, paddle.dx: ${paddle.dx}`);
-//   }, 500);
-// }, 10000);
-
-
 // start the game
 requestAnimationFrame(loop);

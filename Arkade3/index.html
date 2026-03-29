@@ -8,15 +8,87 @@
         padding: 0;
         margin: 0;
       }
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f0f0f0;
+      }
+      nav {
+        width: 100%;
+        background-color: #333;
+        padding: 10px 0;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
       canvas {
         background: #eee;
         display: block;
         margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      h1 {
+        margin: 10px 0;
+        font-size: 1.2rem;
+        text-align: center;
+        max-width: 80%;
+      }
+      #countdown-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 1000;
+        font-size: 3rem;
+        text-align: center;
+      }
+      #countdown-text {
+        margin-bottom: 20px;
+      }
+      .loading-spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #e94560;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     </style>
   </head>
   <body>
-    <h1>Fork Arkade from <a href="https://github.com/end3r/Gamedev-Canvas-workshop">Gamedev-Canvas-workshop</a> with hand detection movement from web camera to move paddle with hands</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../Arkade_slow/index.html">Arkade Slow</a>
+      <a href="../Ping%20Pong/index.html">Ping Pong</a>
+    </nav>
+    <h1>Fork Arkade from <a href="https://github.com/end3r/Gamedev-Canvas-workshop">Gamedev-Canvas-workshop</a> with hand detection</h1>
+    
+    <div id="countdown-overlay">
+      <div id="countdown-text">Loading MediaPipe...</div>
+      <div class="loading-spinner" id="loading-spinner"></div>
+    </div>
+
     <canvas id="myCanvas" width="480" height="320"></canvas>
 
     <video id="videoInput" autoplay playsinline style="display: none"></video>

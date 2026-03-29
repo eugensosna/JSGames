@@ -1,8 +1,9 @@
-export function startDetectionHand(coordinatesCallback) {
+export function startDetectionHand(coordinatesCallback, onFirstFrame) {
     console.log("start callback detect");
     const videoElement = document.getElementById('videoInput');
     const canvasElement = document.getElementById('videoOutput');
     const canvasCtx = canvasElement.getContext('2d');
+    let firstFrameProcessed = false;
 
     const hands = new Hands({
         locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
@@ -26,6 +27,12 @@ export function startDetectionHand(coordinatesCallback) {
         }
 
     hands.onResults((results) => {
+            if (!firstFrameProcessed) {
+                firstFrameProcessed = true;
+                if (onFirstFrame) {
+                    onFirstFrame();
+                }
+            }
             canvasElement.width = videoElement.videoWidth;
             // const width = (vide/oElement.videoWidth).toFixed(0) + 20;
             canvasElement.height = videoElement.videoHeight;
