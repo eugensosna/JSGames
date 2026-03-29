@@ -1,7 +1,7 @@
 import { startDetectionHand } from './handdetect.js';
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-let playOnLoad  = true;
+let playOnLoad = true;
 var ballRadius = 10;
 var x = canvas.width / 2;
 var y = canvas.height - 30;
@@ -42,19 +42,19 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function keyDownHandler(e) {
-	
+
 	if (e.code == "ArrowRight") {
 		rightPressed = true;
 	}
 	else if (e.code == 'ArrowLeft') {
 		leftPressed = true;
 	}
-	if (e.code == "Space"){
+	if (e.code == "Space") {
 		if (!playing) {
 			startCountdownGamePlay();
-		// playing = true;
-		requestAnimationFrame(draw);
-	}
+			// playing = true;
+			// requestAnimationFrame(draw);
+		}
 	}
 }
 function keyUpHandler(e) {
@@ -74,79 +74,79 @@ let mediapipeLoaded = false;
 let loadingCount = 5; // Initial loading countdown
 
 function updateLoadingTimer() {
-    if (!mediapipeLoaded) {
-        if (loadingCount > 0) {
-            countdownText.innerText = "Loading MediaPipe... " + loadingCount;
-            loadingCount--;
-            setTimeout(updateLoadingTimer, 500);
+	if (!mediapipeLoaded) {
+		if (loadingCount > 0) {
+			countdownText.innerText = "Loading MediaPipe... " + loadingCount;
+			loadingCount--;
+			setTimeout(updateLoadingTimer, 500);
 			if (loadingCount === 0) {
 				loadingCount = 10;
 			}
-				
-        } else {
-            countdownText.innerText = "Wait for camera...";
-        }
-    } else {
-        countdownOverlay.style.display = "none";
-    }
+
+		} else {
+			countdownText.innerText = "Wait for camera...";
+		}
+	} else {
+		countdownOverlay.style.display = "none";
+	}
 }
 
 updateLoadingTimer();
 
 function startCountdown() {
-    mediapipeLoaded = true;
-    loadingSpinner.style.display = "none";
+	mediapipeLoaded = true;
+	loadingSpinner.style.display = "none";
 }
 
 
 function startCountdownGamePlay() {
-	if (countdownOverlay.style.display === "flex"){
+	if (countdownOverlay.style.display === "flex") {
 		playing = true;
 		return;
 
 	}  // Prevent multiple starts
-	if (playing){
+	if (playing) {
 		return;
 	}
 	countdownOverlay.style.display = "flex";
 	// loadingSpinner.style.display = "block";
-    let count = 5;
-    countdownText.innerText = "Go in " + count;
-    
-    const timer = setInterval(() => {
-        count--;
-        if (count > 0) {
-            countdownText.innerText = "Play in " + count;
-        } else if (count === 0) {
-            countdownText.innerText = "GO! GO! GO!";
+	let count = 5;
+	countdownText.innerText = "Go in " + count;
+
+	const timer = setInterval(() => {
+		count--;
+		if (count > 0) {
+			countdownText.innerText = "Play in " + count;
+		} else if (count === 0) {
+			countdownText.innerText = "GO! GO! GO!";
 			loadingSpinner.style.display = "none";
 			playing = true;
-        } else {
-            clearInterval(timer);
-            countdownOverlay.style.display = "none";
-            
-        }
-    }, 300);
+		} else {
+			clearInterval(timer);
+			countdownOverlay.style.display = "none";
+
+		}
+	}, 300);
 }
 
 function coordinatesCallback(x, y) {
-  if (x) {
-    let coordinate = ((x * canvas.width) / 100).toFixed(0);
-    coordinate = parseInt(coordinate, 10);
-    moveHandler(coordinate + canvas.offsetLeft);
-	if (!playing){
-		// startCountdownGamePlay();
+	if (x) {
+		let coordinate = ((x * canvas.width) / 100).toFixed(0);
+		coordinate = parseInt(coordinate, 10);
+		moveHandler(coordinate + canvas.offsetLeft);
+		if (!playing) {
+			// startCountdownGamePlay();
+		}
 	}
-  }
 }
 
 startDetectionHand(coordinatesCallback, startCountdown);
 
-function moveHandler(clientX){
+function moveHandler(clientX) {
 	// let paddleXOld = paddleX;
-	
+
 	var relativeX = clientX - canvas.offsetLeft;
-	let condition = relativeX > 0 && relativeX < canvas.width ? true:false;
+	let condition = relativeX > 0 && relativeX < canvas.width ? true : false;
 	//console.log(`Relative X: ${relativeX} coordinate ${clientX} condition ${condition}`);
 	// console.log(`Relative X: ${relativeX} coordinate ${clientX} condition ${condition}`);
 	if (relativeX > 0 && relativeX < canvas.width) {
@@ -155,7 +155,7 @@ function moveHandler(clientX){
 		stackpaddleX.push(paddleX);
 	}
 
-		
+
 }
 
 function mouseMoveHandler(e) {
@@ -253,7 +253,7 @@ function draw() {
 			dy = -dy;
 		}
 		else {
-			
+
 			lives--;
 			playing = false;
 			if (!lives) {
@@ -280,8 +280,8 @@ function draw() {
 
 	x += dx;
 	y += dy;
-	
-	
+
+
 }
 
 requestAnimationFrame(draw);
