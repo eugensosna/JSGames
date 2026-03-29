@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop - lesson 10: finishing up</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      canvas {
+        background: #eee;
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fork Arkade from <a href="https://github.com/end3r/Gamedev-Canvas-workshop">Gamedev-Canvas-workshop</a> with hand detection movement from web camera to move paddle with hands</h1>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <video id="videoInput" autoplay playsinline style="display: none"></video>
+
+    <canvas id="videoOutput" width="480" height="320"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+    <script type="module" src="game.js"></script>
+    <script type ="module" src="handdetect.js"></script>
+      
+  </body>
+</html>
